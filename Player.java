@@ -9,8 +9,8 @@ public abstract class Player implements Comparable {
     protected String name;
     protected int suslevel;
     protected boolean frozen;
-    public static Player[] players = new Player[100];
-    static int count = 0;
+    public static ArrayList<Player> playerslist = new ArrayList<Player>();
+    public static Player[] players;
 
     public Player(String name, int suslevel, boolean frozen) {
 
@@ -18,8 +18,11 @@ public abstract class Player implements Comparable {
         this.suslevel = suslevel;
         this.frozen = frozen;
 
-        players[count] = this;
-        count++;
+        playerslist.add(this);
+
+        players = (Player[]) playerslist.toArray(new Player[0]);
+
+        Arrays.sort(players);
 
     }
 
@@ -30,7 +33,7 @@ public abstract class Player implements Comparable {
     @Override
     public int compareTo(Object o) {
         Player p = (Player) o;
-        return suslevel - p.suslevel;
+        return this.suslevel - p.suslevel;
     }
 
 }

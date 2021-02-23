@@ -12,19 +12,13 @@ public abstract class BlueAstronaut extends Player implements Crewmate{
         super(name, suslevel, frozen);
         this.numTasks = numTasks;
         this.taskSpeed = taskSpeed;
-
-
     }
 
     @Override
     public void emergencyMeeting() {
-        for (int i = 0; i<players.length; i++){
-            System.out.print(players[i]+" ");
-        }
 
-        Arrays.sort(players);
-        if((this.frozen != true) && (players[players.length].equals(players[players.length-1])) && (players[players.length] != this)){
-            players[players.length].frozen = true;
+        if((this.frozen != true) && (!players[players.length-1].equals(players[players.length-2])) && (players[players.length-1] != this)){
+            players[players.length-1].frozen = true;
         } else if (this.frozen = true) {
             System.out.println("Frozen players cannot hold an emergency meeting.");
         }

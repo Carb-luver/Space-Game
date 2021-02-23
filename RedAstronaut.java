@@ -10,17 +10,15 @@ public abstract class RedAstronaut extends Player implements Imposter{
     protected String skill;
 
     public RedAstronaut(String name, int suslevel, boolean frozen, String skill) {
-
         super(name, suslevel, frozen);
         this.skill = skill;
-
     }
 
     @Override
     public void emergencyMeeting() {
-        Arrays.sort(players);
-        if(this.frozen != true && players[players.length] != players[players.length-1] && players[players.length] != this){
-            players[players.length].frozen = true;
+
+        if(this.frozen != true && players[players.length-1] != players[players.length-2] && players[players.length-1] != this){
+            players[players.length-1].frozen = true;
         }else if (this.frozen = true){
             System.out.println("Frozen players cannot hold an emergency meeting.");
         }
